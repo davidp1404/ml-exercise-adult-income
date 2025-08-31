@@ -27,6 +27,7 @@ stages:
     - src/evaluate.py
     metrics:
     - metrics/eval_metrics.json
+    - metrics/metrics_history.json 
 
   # permutation_importance:
   #   cmd: python src/permutation_importance.py

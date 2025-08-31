@@ -53,6 +53,10 @@ stages:
       hash: md5
       md5: e76523995a182a2699dfd46bbcc04c0b
       size: 137
+    - path: metrics/metrics_history.json
+      hash: md5
+      md5: d7053a5c900b81194888236b9f320316
+      size: 1618
   permutation_importance:
     cmd: python src/permutation_importance.py
     deps:
