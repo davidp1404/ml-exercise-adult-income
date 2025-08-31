@@ -29,8 +29,8 @@ stages:
       size: 20600612
     - path: params.yaml
       hash: md5
-      md5: d6366a5241fbf1511569cfbab1b3941f
-      size: 121
+      md5: 9eea5f0a22032863d4dd522ccffbc63d
+      size: 124
     - path: src/train.py
       hash: md5
       md5: 2f06c6c305dc230fbaf9f44de2c5adf1
@@ -39,7 +39,7 @@ stages:
       params.yaml:
         train:
           n_estimators: 100
-          max_depth:
+          max_depth: 20
           min_samples_split: 2
           min_samples_leaf: 1
           random_state: 42
@@ -47,12 +47,12 @@ stages:
     outs:
     - path: metrics/train_metrics.json
       hash: md5
-      md5: 7a81b4ee5874b451650571b85741b49c
+      md5: 246f77c2316289d641d856d18fc22dc0
       size: 36
     - path: models/model.pkl
       hash: md5
-      md5: 90152a8c308b37ee81cfacbe5fdc96fe
-      size: 86191257
+      md5: 12a92485fdcb356cb02f60f791078e76
+      size: 32596057
   evaluate:
     cmd: python src/evaluate.py
     deps:
@@ -62,8 +62,8 @@ stages:
       size: 5152191
     - path: models/model.pkl
       hash: md5
-      md5: 90152a8c308b37ee81cfacbe5fdc96fe
-      size: 86191257
+      md5: 12a92485fdcb356cb02f60f791078e76
+      size: 32596057
     - path: src/evaluate.py
       hash: md5
       md5: b7cf020a709b40925268a529e37f7c81
@@ -71,5 +71,25 @@ stages:
     outs:
     - path: metrics/eval_metrics.json
       hash: md5
-      md5: 847b0ca565d5d6e0999b8516f4e9a743
+      md5: e76523995a182a2699dfd46bbcc04c0b
       size: 137
+  permutation_importance:
+    cmd: python src/permutation_importance.py
+    deps:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 876711e251c85cad31f2eabf61b3e985
+      size: 5152191
+    - path: models/model.pkl
+      hash: md5
+      md5: 90152a8c308b37ee81cfacbe5fdc96fe
+      size: 86191257
+    - path: src/permutation_importance.py
+      hash: md5
+      md5: f0bac9d907439ae8f40e043ec58c00d1
+      size: 991
+    outs:
+    - path: metrics/permutation_importance.json
+      hash: md5
+      md5: 801abb7e9ea90d89ab840c2a78ca8bfe
+      size: 8074

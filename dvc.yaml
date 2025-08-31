@@ -27,6 +27,15 @@ stages:
       - src/evaluate.py
     metrics:
       - metrics/eval_metrics.json
+    
+  # permutation_importance:
+  #   cmd: python src/permutation_importance.py
+  #   deps:
+  #     - data/processed/test.csv
+  #     - models/model.pkl
+  #     - src/permutation_importance.py
+  #   metrics:
+  #     - metrics/permutation_importance.json
 
 plots:
   - metrics/metrics_history.json:
@@ -37,3 +46,7 @@ plots:
         - precision
         - recall
         - f1_score
+  - metrics/permutation_importance.json:
+      template: bar_horizontal
+      x: importance_mean
+      y: features
