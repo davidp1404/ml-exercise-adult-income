@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>DVC Plot</title>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.18.2"></script>
+    
+    <style>
+        table {
+            border-spacing: 15px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id = "metrics_metrics_history_json">
+        <script type = "text/javascript">
+            var spec = {"$schema": "https://vega.github.io/schema/vega-lite/v5.json", "data": {"values": [{"step": 0, "train_accuracy": 0.84952, "eval_accuracy": 0.8511618384686253, "precision": 0.8449307424636446, "recall": 0.8511618384686253, "f1_score": 0.8461251593551102, "dvc_inferred_y_value": 0.84952, "rev": "workspace", "field": "train_accuracy"}, {"step": 0, "train_accuracy": 0.84952, "eval_accuracy": 0.8511618384686253, "precision": 0.8449307424636446, "recall": 0.8511618384686253, "f1_score": 0.8461251593551102, "dvc_inferred_y_value": 0.8511618384686253, "rev": "workspace", "field": "eval_accuracy"}, {"step": 0, "train_accuracy": 0.84952, "eval_accuracy": 0.8511618384686253, "precision": 0.8449307424636446, "recall": 0.8511618384686253, "f1_score": 0.8461251593551102, "dvc_inferred_y_value": 0.8449307424636446, "rev": "workspace", "field": "precision"}, {"step": 0, "train_accuracy": 0.84952, "eval_accuracy": 0.8511618384686253, "precision": 0.8449307424636446, "recall": 0.8511618384686253, "f1_score": 0.8461251593551102, "dvc_inferred_y_value": 0.8511618384686253, "rev": "workspace", "field": "recall"}, {"step": 0, "train_accuracy": 0.84952, "eval_accuracy": 0.8511618384686253, "precision": 0.8449307424636446, "recall": 0.8511618384686253, "f1_score": 0.8461251593551102, "dvc_inferred_y_value": 0.8461251593551102, "rev": "workspace", "field": "f1_score"}]}, "title": {"text": "metrics/metrics_history.json", "anchor": "middle"}, "width": 300, "height": 300, "params": [{"name": "smooth", "value": 0.001, "bind": {"input": "range", "min": 0.001, "max": 1, "step": 0.001}}], "encoding": {"x": {"field": "step", "type": "quantitative", "title": "step"}, "color": {"field": "rev", "scale": {"domain": ["workspace"], "range": ["#945dd6"]}}, "strokeDash": {"field": "field", "scale": {"domain": ["eval_accuracy", "f1_score", "precision", "recall", "train_accuracy"], "range": [[1, 0], [8, 8], [8, 4], [4, 4], [4, 2]]}, "legend": {"symbolFillColor": "transparent", "symbolStrokeColor": "grey"}}}, "layer": [{"layer": [{"params": [{"name": "grid", "select": "interval", "bind": "scales"}], "mark": "line"}, {"transform": [{"filter": {"param": "hover", "empty": false}}], "mark": "point"}], "encoding": {"y": {"field": "dvc_inferred_y_value", "type": "quantitative", "title": "y", "scale": {"zero": false}}, "color": {"field": "rev", "type": "nominal"}}, "transform": [{"loess": "dvc_inferred_y_value", "on": "step", "groupby": ["rev", "field"], "bandwidth": {"signal": "smooth"}}]}, {"mark": {"type": "line", "opacity": 0.2}, "encoding": {"x": {"field": "step", "type": "quantitative", "title": "step"}, "y": {"field": "dvc_inferred_y_value", "type": "quantitative", "title": "y", "scale": {"zero": false}}, "color": {"field": "rev", "type": "nominal"}}}, {"mark": {"type": "circle", "size": 10}, "encoding": {"x": {"aggregate": "max", "field": "step", "type": "quantitative", "title": "step"}, "y": {"aggregate": {"argmax": "step"}, "field": "dvc_inferred_y_value", "type": "quantitative", "title": "y", "scale": {"zero": false}}, "color": {"field": "rev", "type": "nominal"}}}, {"transform": [{"calculate": "datum.rev + '::' + datum.field", "as": "pivot_field"}, {"pivot": "pivot_field", "op": "mean", "value": "dvc_inferred_y_value", "groupby": ["step"]}], "mark": {"type": "rule", "tooltip": {"content": "data"}, "stroke": "grey"}, "encoding": {"opacity": {"condition": {"value": 0.3, "param": "hover", "empty": false}, "value": 0}}, "params": [{"name": "hover", "select": {"type": "point", "fields": ["step"], "nearest": true, "on": "mouseover", "clear": "mouseout"}}]}]};
+            vegaEmbed('#metrics_metrics_history_json', spec);
+        </script>
+    </div>
+    
+</body>
+</html>
