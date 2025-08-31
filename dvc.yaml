@@ -1,33 +1,25 @@
 stages:
-  preprocess:
-    cmd: python src/preprocess.py
-    deps:
-      - data/raw/adult.csv
-      - src/preprocess.py
-    outs:
-      - data/processed/train.csv
-      - data/processed/test.csv
   train:
     cmd: python src/train.py
     deps:
-      - data/processed/train.csv
-      - src/train.py
-      - params.yaml
+    - data/processed/train.csv
+    - src/train.py
+    - params.yaml
     params:
-      - train
+    - train
     outs:
-      - models/model.pkl
+    - models/model.pkl
     metrics:
-      - metrics/train_metrics.json
+    - metrics/train_metrics.json
   evaluate:
     cmd: python src/evaluate.py
     deps:
-      - data/processed/test.csv
-      - models/model.pkl
-      - src/evaluate.py
+    - data/processed/test.csv
+    - models/model.pkl
+    - src/evaluate.py
     metrics:
-      - metrics/eval_metrics.json
-    
+    - metrics/eval_metrics.json
+
   # permutation_importance:
   #   cmd: python src/permutation_importance.py
   #   deps:
@@ -38,15 +30,15 @@ stages:
   #     - metrics/permutation_importance.json
 
 plots:
-  - metrics/metrics_history.json:
-      x: step
-      y:
-        - train_accuracy
-        - eval_accuracy
-        - precision
-        - recall
-        - f1_score
-  - metrics/permutation_importance.json:
-      template: bar_horizontal
-      x: importance_mean
-      y: features
+- metrics/metrics_history.json:
+    x: step
+    y:
+    - train_accuracy
+    - eval_accuracy
+    - precision
+    - recall
+    - f1_score
+- metrics/permutation_importance.json:
+    template: bar_horizontal
+    x: importance_mean
+    y: features
