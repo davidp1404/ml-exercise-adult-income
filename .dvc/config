@@ -2,4 +2,4 @@
     autostage = true
     remote = localremote
 ['remote "localremote"']
-    url = /home/davidp/playground/adult-income/dvc-storage
+    url = ../dvc-storage

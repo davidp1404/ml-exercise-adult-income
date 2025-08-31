@@ -49,6 +49,22 @@ uv run src/download_dataset.py
 uv run dvc repro
 ```
 
+### Restoring from local dvc-remote
+This approach doesn't make sense because includes the dvc data in git, that is what
+DVC resolve pushing the data to an external repo (s3, azure blob, etc..).
+This only helps to put in practice the process assuming an external remote
+
+```bash
+# Remove previous reference having complete path
+dvc remote remove localremote
+
+# Recreate the remote to where dvc stored the data
+dvc remote add -d localremote $(pwd)/dvc-storage
+
+# Restore data from dvc repo
+dvc pull
+```
+
 ### Running Experiments
 ```bash
 # Run experiment with custom hyperparameters
