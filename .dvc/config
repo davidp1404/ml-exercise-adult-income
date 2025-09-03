@@ -1,4 +1,4 @@
 [core]
     remote = localrepo
 ['remote "localrepo"']
-    url = ../dvc-storage
+    url = /home/davidp/dvc-repo
