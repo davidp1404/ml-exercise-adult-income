@@ -9,8 +9,8 @@ stages:
       size: 20600612
     - path: params.yaml
       hash: md5
-      md5: 9eea5f0a22032863d4dd522ccffbc63d
-      size: 124
+      md5: 9dc56e7e2d6a6f644dc855579c5d2110
+      size: 125
     - path: src/train.py
       hash: md5
       md5: 2f06c6c305dc230fbaf9f44de2c5adf1
@@ -19,7 +19,7 @@ stages:
       params.yaml:
         train:
           n_estimators: 100
-          max_depth: 20
+          max_depth: 200
           min_samples_split: 2
           min_samples_leaf: 1
           random_state: 42
@@ -27,12 +27,12 @@ stages:
     outs:
     - path: metrics/train_metrics.json
       hash: md5
-      md5: 246f77c2316289d641d856d18fc22dc0
+      md5: 7a81b4ee5874b451650571b85741b49c
       size: 36
     - path: models/model.pkl
       hash: md5
-      md5: 12a92485fdcb356cb02f60f791078e76
-      size: 32596057
+      md5: f5efb887dbd9563894ef52ed2452a841
+      size: 86191257
   evaluate:
     cmd: python src/evaluate.py
     deps:
@@ -42,8 +42,8 @@ stages:
       size: 5152191
     - path: models/model.pkl
       hash: md5
-      md5: 12a92485fdcb356cb02f60f791078e76
-      size: 32596057
+      md5: f5efb887dbd9563894ef52ed2452a841
+      size: 86191257
     - path: src/evaluate.py
       hash: md5
       md5: b7cf020a709b40925268a529e37f7c81
@@ -51,11 +51,11 @@ stages:
     outs:
     - path: metrics/eval_metrics.json
       hash: md5
-      md5: e76523995a182a2699dfd46bbcc04c0b
+      md5: 847b0ca565d5d6e0999b8516f4e9a743
       size: 137
     - path: metrics/metrics_history.json
       hash: md5
-      md5: c9de5faa6d88f9cd1f1054e90e92e258
+      md5: 62b5de8320e5de258d0bf99116384374
       size: 204
   permutation_importance:
     cmd: python src/permutation_importance.py
